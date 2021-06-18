@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped", 
+    "pattern": [
+        "III",
+        "I#I",
+        "BBB"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        }, 
+        "#": {
+            "item": "minecraft:blue_ice"
+        },
+        "B": {
+            "item": "minecraft:blue_dye"
+        }
+    }, 
+    "result": {
+        "item": "xyycraft:ice_gun", 
+        "count": 1
+    }
+}

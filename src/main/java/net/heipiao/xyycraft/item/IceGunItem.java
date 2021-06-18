@@ -17,12 +17,15 @@ public class IceGunItem extends Item{
         if(!player.getItemInHand(hand).getOrCreateTag().contains("lastUse")){
             player.getItemInHand(hand).getOrCreateTag().putLong("lastUse", 0L);
         }
-        if(world.getDayTime()<player.getItemInHand(hand).getOrCreateTag().getLong("lastUse")){
-            player.getItemInHand(hand).setDamageValue(0);
+        if(!player.getItemInHand(hand).getOrCreateTag().contains("used")){
+            player.getItemInHand(hand).getOrCreateTag().putBoolean("used", false);
         }
-        if(player.getItemInHand(hand).getDamageValue()<1||player.abilities.instabuild){
+        if(world.getDayTime()<player.getItemInHand(hand).getOrCreateTag().getLong("lastUse")){
+            player.getItemInHand(hand).getOrCreateTag().putBoolean("used", false);
+        }
+        if(!(player.getItemInHand(hand).getOrCreateTag().getBoolean("used"))||player.abilities.instabuild){
             player.getItemInHand(hand).getOrCreateTag().putLong("lastUse", world.getDayTime());
-            player.getItemInHand(hand).hurtAndBreak(1, player, (PlayerEntity playerentity)->{});
+            player.getItemInHand(hand).getOrCreateTag().putBoolean("used", true);
             IceChargeEntity entity = new IceChargeEntity(world, player);
             entity.setOwner(player);
             entity.shootFromRotation(player, player.xRot, player.yRot, 0.0F, 1.5F, 1.0F);
