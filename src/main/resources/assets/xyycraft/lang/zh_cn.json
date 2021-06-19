@@ -1,5 +1,6 @@
 {
     "item.xyycraft.ice_gun": "守护之枪", 
+    "item.xyycraft.spatula": "石中之铲", 
     "death.attack.ice_gun": "%1$s被%2$s用守护之枪冻死了",
     "death.attack.ice_gun.item": "%1$s被%2$s用名为%3$s的守护之枪冻死了"
 }

@@ -1,13 +1,13 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"3": "xyycraft:item/e",
-		"4": "xyycraft:item/t",
-		"5": "xyycraft:item/b",
-		"6": "xyycraft:item/n",
-		"7": "xyycraft:item/s",
-		"8": "xyycraft:item/w",
-		"particle": "xyycraft:item/n"
+		"3": "xyycraft:item/ice_gun/e",
+		"4": "xyycraft:item/ice_gun/t",
+		"5": "xyycraft:item/ice_gun/b",
+		"6": "xyycraft:item/ice_gun/n",
+		"7": "xyycraft:item/ice_gun/s",
+		"8": "xyycraft:item/ice_gun/w",
+		"particle": "xyycraft:item/ice_gun/n"
 	},
 	"elements": [
 		{
