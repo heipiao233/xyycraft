@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped", 
+    "pattern": [
+        "III",
+        "I#I",
+        " S "
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:diamond"
+        }, 
+        "#": {
+            "item": "minecraft:enchanted_golden_apple"
+        },
+        "S": {
+            "item": "minecraft:stick"
+        }
+    }, 
+    "result": {
+        "item": "xyycraft:spatula", 
+        "count": 1
+    }
+}
