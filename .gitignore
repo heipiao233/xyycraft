@@ -21,6 +21,7 @@ build
 eclipse
 run
 .vscode/
+blockbench/
 
 # Files from Forge MDK
 forge*changelog.txt
