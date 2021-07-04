@@ -1,0 +1,6 @@
+{
+    "parent": "xyycraft:item/plant_bow",
+    "textures": {
+        "layer0": "xyycraft:item/plant_bow_2"
+    }
+}

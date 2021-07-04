@@ -4,6 +4,8 @@ import net.heipiao.xyycraft.entity.IceChargeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -14,6 +16,12 @@ public class IceGunItem extends Item{
     }
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        if(world.getMoonPhase() == 0){
+            player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 24000 - (int)world.getDayTime(), 7));
+            player.addEffect(new EffectInstance(Effects.JUMP, 24000 - (int)world.getDayTime(), -128));
+            player.addEffect(new EffectInstance(Effects.DIG_SLOWDOWN, 24000 - (int)world.getDayTime(), 128));
+            return ActionResult.consume(player.getItemInHand(hand));
+        }
         if(!player.getItemInHand(hand).getOrCreateTag().contains("lastUse")){
             player.getItemInHand(hand).getOrCreateTag().putLong("lastUse", 0L);
         }

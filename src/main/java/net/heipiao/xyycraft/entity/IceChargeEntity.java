@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameters;
+import net.minecraft.network.IPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.EntityDamageSource;
@@ -19,8 +20,9 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.network.NetworkHooks;
 
-public class IceChargeEntity extends ProjectileItemEntity {
+public class IceChargeEntity extends ProjectileItemEntity{
     public IceChargeEntity(World world, LivingEntity entity) {
         super(EntityTypes.ICE_CHARGE.get(), entity, world);
     }
@@ -29,7 +31,7 @@ public class IceChargeEntity extends ProjectileItemEntity {
     }
     @Override
     public Item getDefaultItem() {
-        return Items.ICE_CHARGE.get();
+        return net.minecraft.item.Items.SNOWBALL;
     }
     @Override
     public void onHitBlock(BlockRayTraceResult result) {
@@ -38,11 +40,13 @@ public class IceChargeEntity extends ProjectileItemEntity {
         int y = result.getDirection().getNormal().getY()+result.getBlockPos().getY();
         int z = result.getDirection().getNormal().getZ()+result.getBlockPos().getZ();
         BlockPos pos = new BlockPos(x, y, z);
-        LootContext.Builder builder = new LootContext.Builder((ServerWorld)level)
-            .withRandom(level.random)
-            .withParameter(LootParameters.TOOL, new ItemStack(Items.ICE_GUN.get()))
-            .withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(pos));
-        this.level.getBlockState(pos).getBlockState().getDrops(builder).forEach((ItemStack stack)->{this.spawnAtLocation(stack);});
+        if(level instanceof ServerWorld){
+            LootContext.Builder builder = new LootContext.Builder((ServerWorld)level)
+                .withRandom(level.random)
+                .withParameter(LootParameters.TOOL, new ItemStack(Items.ICE_GUN.get()))
+                .withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(pos));
+            this.level.getBlockState(pos).getBlockState().getDrops(builder).forEach((ItemStack stack)->{this.spawnAtLocation(stack);});
+        }
         this.level.setBlockAndUpdate(pos, Blocks.ICE.defaultBlockState());
         this.remove();
     }
@@ -54,5 +58,9 @@ public class IceChargeEntity extends ProjectileItemEntity {
             result.getEntity().hurt(new EntityDamageSource("ice_gun", this.getOwner()), result.getEntity() instanceof BlazeEntity?5:3);
         }
         this.remove();
+    }
+    @Override
+    public IPacket<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
