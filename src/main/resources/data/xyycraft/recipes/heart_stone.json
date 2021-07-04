@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped", 
+    "pattern": [
+        "GGG",
+        "G#G",
+        "DDD"
+    ],
+    "key": {
+        "G": {
+            "item": "minecraft:glass_pane"
+        }, 
+        "#": {
+            "item": "minecraft:ghast_hear"
+        },
+        "D": {
+            "item": "minecraft:green_dye"
+        }
+    }, 
+    "result": {
+        "item": "xyycraft:heart_stone", 
+        "count": 1
+    }
+}

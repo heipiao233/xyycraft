@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped", 
+    "pattern": [
+        "LLL",
+        "L#L",
+        "BBB"
+    ],
+    "key": {
+        "L": {
+            "item": "minecraft:leather"
+        }, 
+        "#": {
+            "item": "minecraft:blaze_rod"
+        },
+        "B": {
+            "item": "minecraft:red_dye"
+        }
+    }, 
+    "result": {
+        "item": "xyycraft:brave_belt", 
+        "count": 1
+    }
+}
